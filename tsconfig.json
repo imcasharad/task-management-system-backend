@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                // Use modern JavaScript
+      "module": "CommonJS",           // Node.js uses CommonJS modules
+      "outDir": "./dist",             // Where compiled JS goes (optional for now)
+      "rootDir": "./src",             // Where your source code lives
+      "strict": true,                 // Enforce strict type checking
+      "esModuleInterop": true,        // Fix the express import issue
+      "skipLibCheck": true,           // Speed up compilation
+      "forceConsistentCasingInFileNames": true, // Avoid file name case issues
+      "experimentalDecorators": true,      // Enable decorators
+      "emitDecoratorMetadata": true        // Needed for TypeORM
+    },
+    "include": ["src/**/*"],         // Compile all files in src/
+    "exclude": ["node_modules"]      // Don’t compile node_modules
+  }
