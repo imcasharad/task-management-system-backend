@@ -1,10 +1,11 @@
 import "reflect-metadata";
-import express from "express";
+import express, { Application, Request, Response } from "express";
+import dotenv from "dotenv";
 import cors from "cors";
 import { AppDataSource } from "./config/db";
-import groupRoutes from "./routes/groupRoutes";
+import routes from "./routes";
 
-const app = express();
+const app: Application = express();
 
 // Add CORS middleware
 app.use(cors({
@@ -14,12 +15,13 @@ app.use(cors({
 
   // Parse JSON requests using Express.js middleware
 app.use(express.json()); // Parse JSON requests
+app.use(express.urlencoded({ extended: true }));
 
 // Connect to database and start server
 AppDataSource.initialize()
   .then(() => {
     console.log("Database connected!");
-    app.use("/api", groupRoutes); // Mount routes under /api
+    app.use("/api", routes); 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })

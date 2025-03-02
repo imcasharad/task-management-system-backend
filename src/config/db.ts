@@ -9,7 +9,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "your_password",
   database: process.env.DB_NAME || "task_management",
-  synchronize: false, // Auto-create tables (for dev only)
+  synchronize: true, // Auto-create tables (for dev only)
   logging: true,
   entities: ["src/models/*.ts"], // Where models are stored
+  subscribers: [],
+  migrations: [],
 });
